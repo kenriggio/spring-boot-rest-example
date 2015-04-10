@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.thinknear.attribution</groupId>
+  <artifactId>attribution-service</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.2.1.RELEASE</version>
+  </parent>
+
+  <name>attribution-service</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>1.6.11</version>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.6.11</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path</artifactId>
+      <version>0.9.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.hateoas</groupId>
+      <artifactId>spring-hateoas</artifactId>
+    </dependency>
+  </dependencies>
+
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <properties>
+    <default.encoding>UTF-8</default.encoding>
+    <skip.rspec.tests>${skipTests}</skip.rspec.tests>
+    <skip.surefire.tests>${skipTests}</skip.surefire.tests>
+    <skip.failsafe.tests>${skipTests}</skip.failsafe.tests>
+    <skip.coverage>${skip.surefire.tests}</skip.coverage>
+    <jacoco.version>0.7.1.201405082137</jacoco.version>
+    <jersey-version>1.12</jersey-version>
+    <log4j.version>2.0.1</log4j.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring.framework.version>4.0.4.RELEASE</spring.framework.version>
+    <springframework.security.version>3.2.5.RELEASE</springframework.security.version>
+
+    <!-- Plugin versions -->
+    <deploy.plugin.version>2.6</deploy.plugin.version>
+    <javadoc.plugin.version>2.8</javadoc.plugin.version>
+    <scm.plugin.version>1.4</scm.plugin.version>
+    <source.plugin.version>2.1.2</source.plugin.version>
+    <release.plugin.version>2.5</release.plugin.version>
+
+    <!-- Sonar properties -->
+    <!-- https://github.com/ThinkNear/venice/wiki/Sonar-Configuration -->
+    <sonar.host.url>http://sonar.thinknearhub.com</sonar.host.url>
+    <sonar.language>java</sonar.language>
+    <sonar.sourceEncoding>${project.build.sourceEncoding}</sonar.sourceEncoding>
+    <sonar.sources>src/main</sonar.sources>
+    <sonar.issuesReport.html.enable>true</sonar.issuesReport.html.enable>
+    <sonar.issuesReport.console.enable>true</sonar.issuesReport.console.enable>
+    <sonar.login>tndev</sonar.login>
+    <sonar.password>tndev1</sonar.password>
+    <sonar.junit.reportsPath>target/surefire-reports</sonar.junit.reportsPath>
+    <sonar.jacoco.reportPath>target/jacoco.exec</sonar.jacoco.reportPath>
+    <sonar.projectKey>venice</sonar.projectKey>
+    <sonar.branch>master</sonar.branch>
+    <!--
+      Set far in the future to bypass time comparison against latest snapshot
+      despite time zone and syncing issues.  Since 'incremental' builds aren't
+      saved to the server, the stated time doesn't matter.
+
+      REMOVE or set to a sane value if running any analysis mode other than
+      'incremental' or 'preview'.
+    -->
+    <sonar.projectDate>2100-04-01</sonar.projectDate>
+    <sonar.analysis.mode>incremental</sonar.analysis.mode>
+
+    <tomcat.http.port>8080</tomcat.http.port>
+    <memcached.port>11211</memcached.port>
+  </properties>
+
+</project>
