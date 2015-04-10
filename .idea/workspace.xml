@@ -129,7 +129,7 @@
       <file leaf-file-name="UserLocationController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/thinknear/attribution/web/controller/UserLocationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6137339">
+            <state vertical-scroll-proportion="0.71030045">
               <caret line="75" column="47" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -206,8 +206,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="5" />
-    <option name="y" value="130" />
+    <option name="x" value="-71" />
+    <option name="y" value="181" />
     <option name="width" value="1920" />
     <option name="height" value="808" />
   </component>
@@ -857,15 +857,15 @@
       <created>1428600291225</created>
       <option name="number" value="Default" />
       <updated>1428600291225</updated>
-      <workItem from="1428600295050" duration="17368000" />
+      <workItem from="1428600295050" duration="17543000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17368000" />
+    <option name="totallyTimeSpent" value="17543000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="5" y="130" width="1920" height="808" extended-state="0" />
+    <frame x="-71" y="181" width="1920" height="808" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1049,7 +1049,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/thinknear/attribution/web/controller/UserLocationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6137339">
+        <state vertical-scroll-proportion="0.71030045">
           <caret line="75" column="47" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
