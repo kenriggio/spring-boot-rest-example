@@ -6,6 +6,13 @@
 > java -jar target/attribution-service-1.0-SNAPSHOT.jar
 ```
 
+
+- API Documentation:
+
+```
+http://localhost:8080/swagger/index.html
+```
+
 ### References
 
 1. [SpringMVC full config](https://samerabdelkafi.wordpress.com/2014/08/03/spring-mvc-full-java-based-config/)
