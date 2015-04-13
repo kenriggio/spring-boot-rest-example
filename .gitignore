@@ -1,0 +1,29 @@
+# Ignore bundler config
+/.bundle
+
+log/*.*
+log/*
+*.log
+tmp/*
+tmp/**/*
+doc/api
+doc/app
+db/*.sqlite3
+*.swp
+*.swo
+*.swn
+*~
+.DS_Store
+mate.tmproj
+coverage/*
+coverage/*.*
+
+#rubymine
+.idea/*
+
+# will be regenerated as necessary
+script/hive/manifest.mf
+
+/public/assets
+# intellij
+*.iml

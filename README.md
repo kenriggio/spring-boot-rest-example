@@ -10,6 +10,7 @@
 
 1. [SpringMVC full config](https://samerabdelkafi.wordpress.com/2014/08/03/spring-mvc-full-java-based-config/)
 2. [Spring HATEOAS](http://azagorneanu.blogspot.com/2013/06/hateoas-using-spring-framework.html)
-3. 
+3. [Swagger + Spring Boot](http://www.javacodegeeks.com/2015/03/spring-boot-swagger-ui.html)
+ 
  
 

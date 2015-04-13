@@ -5,6 +5,10 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 import com.thinknear.attribution.annotation.Profile;
 import com.thinknear.attribution.web.service.UserLocationService;
 import com.thinknear.attribution.web.model.UserLocation;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiResponse;
+import com.wordnik.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 @Controller
+@Api(basePath = "/attribution/userlocation", value = "UserLocation Service", description = "UserLocation Operations", produces = "application/json")
 @RequestMapping("/attribution/userlocation")
 public class UserLocationController {
     private UserLocationService userLocationService;
@@ -48,6 +53,10 @@ public class UserLocationController {
         return responseHeaders;
     }
 
+    @ApiOperation(value = "Gets an existing UserLocation by Id", notes = "Returns a UserLocation for given id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "UserLocation was not found"),  // TODO: Not implemented
+            @ApiResponse(code = 200, message = "UserLocation was found and returned") })
     @Profile("UserLocationController#getUserLocationById")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -57,6 +66,10 @@ public class UserLocationController {
         return new ResponseEntity<UserLocation>(userLocation, getResponseHeadersForUserLocation(userLocation), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Create new UserLocation", notes = "Creates new UserLocation")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Fields are with validation errors"),  // TODO: Not implemented
+            @ApiResponse(code = 201, message = "UserLocation was created") })
     @Profile("UserLocationController#createUserLocation")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
@@ -66,6 +79,12 @@ public class UserLocationController {
         return new ResponseEntity<UserLocation>(userLocation, getResponseHeadersForUserLocation(userLocation), HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "Updates an existing UserLocation", notes = "Updates UserLocation")
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "UserLocation to update was not found"),  // TODO: Not implemented
+            @ApiResponse(code = 400, message = "Fields are with validation errors"),  // TODO: Not implemented
+            @ApiResponse(code = 501, message = "Not implemented yet"),  // TODO: Not implemented
+            @ApiResponse(code = 204, message = "UserLocation was updated") })
     @Profile("UserLocationController#updateUserLocation")
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
@@ -82,6 +101,11 @@ public class UserLocationController {
         }
     }
 
+    @ApiOperation(value = "Deletes an existing UserLocation", notes = "Deletes UserLocation")
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "UserLocation to delete was not found"),  // TODO: Not implemented
+            @ApiResponse(code = 501, message = "Not implemented yet"),  // TODO: Not implemented
+            @ApiResponse(code = 204, message = "UserLocation was deleted") })
     @Profile("UserLocationController#deleteUserLocation")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseBody
