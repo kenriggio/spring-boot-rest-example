@@ -60,7 +60,7 @@ public class UserLocationController {
     @Profile("UserLocationController#getUserLocationById")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public HttpEntity<UserLocation> getUserLocationById(@PathVariable(value = "id") String id) {
+    public HttpEntity<UserLocation>getUserLocationById(@PathVariable(value = "id") String id) {
         UserLocation userLocation = userLocationService.getUserLocation(id);
         userLocation.add(linkTo(methodOn(UserLocationController.class).getUserLocationById(id)).withSelfRel());
         return new ResponseEntity<UserLocation>(userLocation, getResponseHeadersForUserLocation(userLocation), HttpStatus.OK);
