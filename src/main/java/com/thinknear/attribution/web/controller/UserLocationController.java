@@ -49,7 +49,7 @@ public class UserLocationController {
     protected HttpHeaders getResponseHeadersForUserLocation(UserLocation userLocation) {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.add("Location", linkTo(methodOn(UserLocationController.class).getUserLocationById(userLocation.getUserLocationId())).withSelfRel().getHref());
-        responseHeaders.add("ETag", String.valueOf(userLocation.hashCode())); // Should do MD5 of content, but this is just an example
+        responseHeaders.add("ETag", String.format("\"%s\"", String.valueOf(userLocation.hashCode()))); // Should do MD5 of content, but this is just an example
         return responseHeaders;
     }
 
