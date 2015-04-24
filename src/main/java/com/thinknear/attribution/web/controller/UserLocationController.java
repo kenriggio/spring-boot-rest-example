@@ -1,7 +1,7 @@
 package com.thinknear.attribution.web.controller;
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
-
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 import com.thinknear.attribution.annotation.Profile;
 import com.thinknear.attribution.web.service.UserLocationService;
 import com.thinknear.attribution.web.model.UserLocation;
@@ -89,16 +89,8 @@ public class UserLocationController {
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
     public HttpEntity<Void> updateUserLocation(@RequestBody UserLocation userLocation) {
-        try {
-            userLocationService.updateUserLocation(userLocation);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        } catch (NotImplementedException nie) {
-            return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
-            // TODO: Only done as an example to return a response that tests the ThrowableAspect
-        } catch (Throwable t) {
-            // This is a basic catch all since we don't want to blast the users with our stack traces
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        userLocationService.updateUserLocation(userLocation);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @ApiOperation(value = "Deletes an existing UserLocation", notes = "Deletes UserLocation")
@@ -110,16 +102,8 @@ public class UserLocationController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public HttpEntity<Void> deleteUserLocation(@PathVariable(value = "id") String id) {
-        try {
-            userLocationService.deleteUserLocation(id);
-            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-        } catch (NotImplementedException nie) {
-            return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
-            // TODO: Only done as an example to return a response that tests the ThrowableAspect
-        } catch (Throwable t) {
-            // This is a basic catch all since we don't want to blast the users with our stack traces
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        userLocationService.deleteUserLocation(id);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
 
