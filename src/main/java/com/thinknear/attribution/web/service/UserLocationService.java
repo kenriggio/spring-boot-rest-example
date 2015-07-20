@@ -1,5 +1,9 @@
 package com.thinknear.attribution.web.service;
 
+import java.util.concurrent.Future;
+
+import org.springframework.util.concurrent.ListenableFuture;
+
 import com.thinknear.attribution.web.model.UserLocation;
 
 /**
@@ -7,6 +11,7 @@ import com.thinknear.attribution.web.model.UserLocation;
  */
 public interface UserLocationService {
     UserLocation getUserLocation(String id);
+    ListenableFuture<UserLocation> getUserLocationAsync(String id) throws InterruptedException;
     UserLocation createUserLocation(UserLocation userLocation);
     void updateUserLocation(UserLocation userLocation);
     void deleteUserLocation(String id);

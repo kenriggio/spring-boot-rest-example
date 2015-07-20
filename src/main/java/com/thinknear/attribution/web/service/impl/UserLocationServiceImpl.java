@@ -1,12 +1,19 @@
 package com.thinknear.attribution.web.service.impl;
 
+import java.util.concurrent.Future;
+
 import com.thinknear.attribution.annotation.Profile;
 import com.thinknear.attribution.annotation.Throwit;
 import com.thinknear.attribution.web.service.UserLocationService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
+import org.springframework.util.concurrent.ListenableFuture;
+
 import com.thinknear.attribution.web.model.UserLocation;
 import com.thinknear.attribution.web.dao.UserLocationDao;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +33,7 @@ public class UserLocationServiceImpl implements UserLocationService {
     @Profile("UserLocationServiceImpl#getUserLocation")
     @Throwit
     public UserLocation getUserLocation(String id) {
+    	//Thread.sleep(75);
         return userLocationDao.findUserLocationById(id);
     }
 
@@ -54,4 +62,11 @@ public class UserLocationServiceImpl implements UserLocationService {
             // TODO: do something
         }
     }
+
+	@Override
+	@Profile("UserLocationServiceImpl#getUserLocationAsync")
+	public ListenableFuture<UserLocation> getUserLocationAsync(String id) throws InterruptedException {
+		UserLocation userLocation = userLocationDao.findUserLocationById(id);
+		return new AsyncResult<UserLocation>(userLocation);
+	}
 }

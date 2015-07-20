@@ -2,6 +2,7 @@ package com.thinknear.attribution.config;
 
 import com.thinknear.attribution.web.dao.logfile.UserLocationDaoImpl;
 import com.thinknear.attribution.web.dao.UserLocationDao;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,12 +11,15 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.EnableAsync;
+
 import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
 import com.mangofactory.swagger.models.dto.ApiInfo;
 import com.mangofactory.swagger.plugin.*;
 
 @EnableAutoConfiguration
 @EnableAspectJAutoProxy
+@EnableAsync
 @EnableSwagger
 @ComponentScan(basePackages = {"com.thinknear.attribution"})
 @PropertySource({"classpath:application.properties" })

@@ -27,3 +27,4 @@ script/hive/manifest.mf
 /public/assets
 # intellij
 *.iml
+/target/
