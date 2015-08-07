@@ -5,6 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ApiFault {
 
@@ -33,6 +37,7 @@ public class ApiFault {
         this.detail = detail;
     }
 
+    @ApiModelProperty(required = false, value = "HTTP Status Code of the Response")
     public String getStatus() {
         return status;
     }
@@ -41,6 +46,7 @@ public class ApiFault {
         this.status = status;
     }
 
+    @ApiModelProperty(required = false, value = "Type of Error - Internal Identifier")
     public String getType() {
         return type;
     }
@@ -49,6 +55,7 @@ public class ApiFault {
         this.type = type;
     }
 
+    @ApiModelProperty(required = false, value = "Details of the Fault")
     public String getDetail() {
         return detail;
     }

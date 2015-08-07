@@ -23,6 +23,7 @@ public class WebConfig {
     public Filter shallowETagHeaderFilter() {
         return new ShallowEtagHeaderFilter();
     }
+
     
 /*
     @Bean

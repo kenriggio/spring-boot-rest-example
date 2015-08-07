@@ -1,30 +1,24 @@
 package com.thinknear.attribution.web.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
-import org.springframework.hateoas.ResourceSupport;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "Location of a User")
+@ApiModel
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserLocation extends ResourceSupport {
+public class UserLocation {
 
-    @ApiModelProperty(value = "The surrogate key for this record", required=false)
     @JsonProperty("id")
     private String userLocationId; // using userLocationId instead of Id, since ResourceSupport using id for link.
-    @ApiModelProperty(value = "The user id for this event", required=false)
     @JsonProperty("userId")
     private String userId;
-    @ApiModelProperty(value = "latitude of the user for this event", required=false)
     @JsonProperty("lat")
     private String lat;
-    @ApiModelProperty(value = "longitude of the user for this event", required=false)
     @JsonProperty("lon")
     private String lon;
 
-
+    @ApiModelProperty(required = false, value = "Unique Identifier of this Object")
     public String getUserLocationId() {
         return userLocationId;
     }
@@ -32,7 +26,8 @@ public class UserLocation extends ResourceSupport {
     public void setUserLocationId(String userLocationId) {
         this.userLocationId = userLocationId;
     }
-
+    
+    @ApiModelProperty(required = false, value = "UserId for Location")
     public String getUserId() {
         return userId;
     }
@@ -41,6 +36,7 @@ public class UserLocation extends ResourceSupport {
         this.userId = userId;
     }
 
+    @ApiModelProperty(required = false, value = "Latitude")
     public String getLat() {
         return lat;
     }
@@ -49,6 +45,7 @@ public class UserLocation extends ResourceSupport {
         this.lat = lat;
     }
 
+    @ApiModelProperty(required = false, value = "Longtitude")
     public String getLon() {
         return lon;
     }

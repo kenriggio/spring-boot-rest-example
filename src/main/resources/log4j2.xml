@@ -13,6 +13,12 @@
         <logger name="com.thinknear.attribution" level="debug">
             <appender-ref ref="Attribution"/>
         </logger>
+        <logger name="org.springframework" level="debug">
+            <appender-ref ref="Attribution"/>
+        </logger>
+        <root level="debug">
+      		<appender-ref ref="Attribution"/>
+    	</root>
     </loggers>
 
 </configuration>
