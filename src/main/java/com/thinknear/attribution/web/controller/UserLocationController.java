@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@Api(value = "userlocation", produces = "application/json")
+@Api(value = "userlocation", produces = "application/json", consumes = "application/json")
 @RequestMapping("/attribution/userlocation")
 public class UserLocationController {
     private UserLocationService userLocationService;
