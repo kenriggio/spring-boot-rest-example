@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration status="info" strict="true" name="AttributionLoggingConfig" packages="org.apache.logging.log4j.test">
+<configuration status="info" strict="true" name="SocialStreamLoggingConfig" packages="org.apache.logging.log4j.test">
 
     <appenders>
-        <File name="Attribution" fileName="attribution.log" immediateFlush="true" append="true" bufferedIO="false">
+        <File name="SocialStream" fileName="socialstream.log" immediateFlush="true" append="true" bufferedIO="false">
             <PatternLayout>
                 <pattern>[%d{dd MMM yyyy HH:mm:ss}{GMT+0} %p] %m%n</pattern>
             </PatternLayout>
@@ -10,14 +10,14 @@
     </appenders>
 
     <loggers>
-        <logger name="com.thinknear.attribution" level="debug">
-            <appender-ref ref="Attribution"/>
+        <logger name="com.hackathon.socialstream" level="debug">
+            <appender-ref ref="SocialStream"/>
         </logger>
         <logger name="org.springframework" level="debug">
-            <appender-ref ref="Attribution"/>
+            <appender-ref ref="SocialStream"/>
         </logger>
         <root level="debug">
-      		<appender-ref ref="Attribution"/>
+      		<appender-ref ref="SocialStream"/>
     	</root>
     </loggers>
 

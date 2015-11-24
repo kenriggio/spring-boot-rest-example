@@ -1,11 +1,12 @@
-package com.thinknear.attribution.aspect;
+package com.hackathon.socialstream.aspect;
 
-import com.thinknear.attribution.annotation.Throwit;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import com.hackathon.socialstream.annotation.Throwit;
 
 /**
  * Created by kennethr on 4/9/15.

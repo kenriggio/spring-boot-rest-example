@@ -1,12 +1,13 @@
-package com.thinknear.attribution.aspect;
+package com.hackathon.socialstream.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.ProceedingJoinPoint;
-import com.thinknear.attribution.annotation.Profile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import com.hackathon.socialstream.annotation.Profile;
 
 /**
  * Created by kennethr on 4/9/15.

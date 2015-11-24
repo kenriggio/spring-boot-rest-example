@@ -9,7 +9,7 @@ The package structure is not what I consider ideal. I would typically have two d
 
 ```
 > mvn clean package
-> java -jar target/attribution-service-1.0-SNAPSHOT.jar
+> java -jar target/socialstream-1.0-SNAPSHOT.jar
 ```
 
 

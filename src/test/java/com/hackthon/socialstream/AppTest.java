@@ -1,4 +1,4 @@
-package com.thinknear.attribution;
+package com.hackthon.socialstream;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

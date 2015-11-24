@@ -1,7 +1,4 @@
-package com.thinknear.attribution.config;
-
-import com.thinknear.attribution.web.dao.logfile.UserLocationDaoImpl;
-import com.thinknear.attribution.web.dao.UserLocationDao;
+package com.hackathon.socialstream.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +12,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.env.Environment;
 
 import com.google.common.base.Predicate;
+import com.hackathon.socialstream.web.dao.ArtistWeightDao;
+import com.hackathon.socialstream.web.dao.logfile.ArtistWeightDaoImpl;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
@@ -27,7 +26,7 @@ import static springfox.documentation.builders.PathSelectors.*;
 @Configuration
 @EnableAspectJAutoProxy
 @EnableSwagger2
-@ComponentScan(basePackages = {"com.thinknear.attribution"})
+@ComponentScan(basePackages = {"com.hackathon.socialstream"})
 @PropertySource({"classpath:application.properties" })
 public class Application {
 
@@ -35,9 +34,9 @@ public class Application {
     private Environment env;
   
  
-    @Bean(name = "userLocationDao")
-    public UserLocationDao userLocationDao() {
-        return new UserLocationDaoImpl();
+    @Bean(name = "artistWeightDao")
+    public ArtistWeightDao userLocationDao() {
+        return new ArtistWeightDaoImpl();
     }
 
     @Bean
@@ -51,12 +50,12 @@ public class Application {
 
     //Here is an example where we select any api that matches one of these paths
     private Predicate<String> paths() {
-      return regex("/attribution/userlocation.*");
+      return regex("/socialstream/weight.*");
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("UserLocation API")
+                .title("Artist Weight API")
                 .description("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum " +
                         "has been the industry's standard dummy text ever since the 1500s, when an unknown printer "
                         + "took a " +
@@ -65,7 +64,7 @@ public class Application {
                         "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum " +
                         "passages, and more recently with desktop publishing software like Aldus PageMaker including " +
                         "versions of Lorem Ipsum.")
-                .termsOfServiceUrl("http://thinknear.com")
+                .termsOfServiceUrl("http://hackathon")
                 .contact("ken")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://github.com/springfox/springfox/blob/master/LICENSE")

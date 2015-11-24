@@ -1,4 +1,4 @@
-package com.thinknear.attribution.annotation;
+package com.hackathon.socialstream.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

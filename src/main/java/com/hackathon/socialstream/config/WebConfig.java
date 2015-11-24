@@ -1,4 +1,4 @@
-package com.thinknear.attribution.config;
+package com.hackathon.socialstream.config;
 
 //import io.undertow.Undertow.Builder;
 //import io.undertow.server.HttpHandler;
