@@ -2,6 +2,7 @@ package com.hackathon.socialstream.web.controller;
 
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hackathon.socialstream.HTTPConnection;
 import com.hackathon.socialstream.model.FbArtists;
 import io.swagger.annotations.Api;
@@ -17,12 +18,16 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import net.minidev.json.parser.JSONParser;
+import net.minidev.json.parser.ParseException;
 import org.apache.cxf.ws.addressing.MAPAggregator;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.QueryParam;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -85,9 +91,19 @@ public class ArtistWeightController {
             @ApiResponse(code = 200, message = "Top artists found and returned", response = ArtistWeight.class) })
     @RequestMapping(value = "/top/likedartists", method = RequestMethod.POST, produces="application/json")
     @ResponseBody
-    public Object getLikedArtists(@RequestBody(required = true)Map<String, List<String>> body){
-
-        System.out.println("Linked Artists: " + body.get("artists").toString());
+    public Object getLikedArtists(Model model, @RequestBody(required = true)String artists){
+        FbArtists fbArtists;
+        try {
+             fbArtists = new ObjectMapper().readValue(artists, FbArtists.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        try {
+//            JSONObject json = (JSONObject)new JSONParser() .parse(artists);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+        System.out.println("Linked Artists: " + artists);
         /*List<String> liked_artists = new ArrayList<String>();
 
         liked_artists.add("Celtics");

@@ -102,7 +102,7 @@
             url: '/socialstream/weight/top/likedartists',
             dataType: 'json',
             async: true,
-            data: {artists:attractionsList},
+            data: JSON.stringify({'artists':attractionsList}),
             success: function (e) {
                 console.log("SUCCESS");
 
