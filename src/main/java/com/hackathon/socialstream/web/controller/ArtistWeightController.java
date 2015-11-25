@@ -2,6 +2,7 @@ package com.hackathon.socialstream.web.controller;
 
 
 
+import com.hackathon.socialstream.model.FbArtists;
 import io.swagger.annotations.Api;
 
 
@@ -15,6 +16,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import org.apache.cxf.ws.addressing.MAPAggregator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.ws.rs.QueryParam;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -81,20 +84,21 @@ public class ArtistWeightController {
             @ApiResponse(code = 200, message = "Top artists found and returned", response = ArtistWeight.class) })
     @RequestMapping(value = "/top/likedartists", method = RequestMethod.POST, produces="application/json")
     @ResponseBody
-    public Object getLikedArtists(@QueryParam("liked_artists")ArrayList<String> liked_artist){
+    public Object getLikedArtists(@RequestBody(required = true)Map<String, List<String>> body){
 
-        System.out.println("Linked Artists: " + liked_artist.toString());
-        List<String> liked_artists = new ArrayList<String>();
+        System.out.println("Linked Artists: " + body.get("artists").toString());
+        /*List<String> liked_artists = new ArrayList<String>();
 
         liked_artists.add("Celtics");
         liked_artists.add("Cavaliers");
         liked_artists.add("Merphis");
         liked_artists.add("Lakers");
-        liked_artists.add("Knicks");
+        liked_artists.add("Knicks");*/
 
-        List<ArtistWeight> artistWeight =  artistWeightService.getTopLikedArtists(liked_artists);
+        //List<ArtistWeight> artistWeight =  artistWeightService.getTopLikedArtists(liked_artist.getArtists());
 
-        return artistWeight;
+        //return artistWeight;
+        return null;
     }
 
 

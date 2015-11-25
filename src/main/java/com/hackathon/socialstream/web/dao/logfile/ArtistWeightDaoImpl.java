@@ -93,6 +93,8 @@ public class ArtistWeightDaoImpl implements ArtistWeightDao {
         try {
             //List<ArtistWeight> artistWeight = (List<ArtistWeight>) jdbcTemplate.queryForObject(ArtistWeightDaoImpl.TOP3LIKEDARTISTS, new ArtistWeightRowMapper(), params);
             List<ArtistWeight> artistWeight = jdbcTemplate.query(query, new ArtistWeightRowMapper());
+
+            //FSSClient.getFSSData();
             return artistWeight;
         }
         catch(Exception e){
