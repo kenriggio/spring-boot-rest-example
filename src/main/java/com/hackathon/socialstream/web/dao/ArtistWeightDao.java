@@ -10,6 +10,7 @@ import com.hackathon.socialstream.web.model.ArtistWeight;
 public interface ArtistWeightDao {
     //ArtistWeight createArtistWeight(ArtistWeight artistWeight);
     public List<ArtistWeight> getTopTenArtists();
+    public List<ArtistWeight> getTopLikedArtists(List<String> artists);
     /*boolean updateArtistWeight(ArtistWeight artistWeight);
     boolean deleteArtistWeight(String id);
     ArtistWeight findArtistWeightById(String id);

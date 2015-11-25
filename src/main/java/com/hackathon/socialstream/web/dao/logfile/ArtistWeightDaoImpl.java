@@ -1,14 +1,17 @@
 package com.hackathon.socialstream.web.dao.logfile;
 
+import com.google.common.collect.ImmutableMap;
 import com.hackathon.socialstream.web.dao.ArtistWeightDao;
 import com.hackathon.socialstream.web.dao.ArtistWeightRowMapper;
 import com.hackathon.socialstream.web.model.ArtistWeight;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by kennethr on 4/9/15.
@@ -52,7 +55,10 @@ public class ArtistWeightDaoImpl implements ArtistWeightDao {
     }
 */
 
-    private static String TOP10ARTIST = "SELECT * FROM Artist_Weight ORDER BY weight DESC LIMIT 5";
+    private static String TOP10ARTIST = "SELECT * FROM Artist_Weight ORDER BY weight DESC LIMIT 10";
+    private static String TOP3LIKEDARTISTS = "SELECT * FROM (SELECT *  FROM `Artist_Weight`where artist_name IN (:artist_name) )as res\n" +
+                                             "ORDER by res.weight DESC\n" +
+                                             "LIMIT 3";
 
     @Override
     public List<ArtistWeight> getTopTenArtists(){
@@ -60,6 +66,18 @@ public class ArtistWeightDaoImpl implements ArtistWeightDao {
     List<ArtistWeight> artistWeight = jdbcTemplate.query(ArtistWeightDaoImpl.TOP10ARTIST, new ArtistWeightRowMapper());
 
         return artistWeight;
+    }
+
+    @Override
+    public List<ArtistWeight> getTopLikedArtists(List<String> artists){
+
+        Map<String, Object> params = (new ImmutableMap.Builder<String, Object>())
+                                       .put("artist_name", artists)
+                                       .build();
+
+         List<ArtistWeight> res = (List<ArtistWeight>)jdbcTemplate.queryForObject(ArtistWeightDaoImpl.TOP3LIKEDARTISTS, new ArtistWeightRowMapper(), params);
+
+        return res;
     }
 
 }

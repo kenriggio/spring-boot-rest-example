@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.ws.rs.QueryParam;
 import java.util.List;
 
 
@@ -64,7 +65,7 @@ public class ArtistWeightController {
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "No Artists found", response = ApiFault.class),  // TODO: Not implemented
             @ApiResponse(code = 200, message = "Top artists found and returned", response = ArtistWeight.class) })
-    @RequestMapping(value = "/topartists", method = RequestMethod.GET, produces="application/json")
+    @RequestMapping(value = "/top/artists", method = RequestMethod.GET, produces="application/json")
     @ResponseBody
     public Object getArtistsForConsumer(){
 
@@ -72,6 +73,20 @@ public class ArtistWeightController {
 
         return artistWeight;
     }
+
+    @ApiOperation(value = "Get Top 3 Liked Artists", response = ArtistWeight.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "No Artists found", response = ApiFault.class),  // TODO: Not implemented
+            @ApiResponse(code = 200, message = "Top artists found and returned", response = ArtistWeight.class) })
+    @RequestMapping(value = "/top/likedartists", method = RequestMethod.POST, produces="application/json")
+    @ResponseBody
+    public Object getLikedArtists(@QueryParam("liked_artists")List<String> liked_artists){
+
+        List<ArtistWeight> artistWeight =  artistWeightService.getTopLikedArtists(liked_artists);
+
+        return artistWeight;
+    }
+
 
    /* @ApiOperation(value = "Gets an existing ArtistWeight by Id", notes = "Returns a ArtistWeight for given id", response = ArtistWeight.class)
     @ApiResponses(value = {

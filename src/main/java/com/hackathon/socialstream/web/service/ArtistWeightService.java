@@ -18,4 +18,5 @@ public interface ArtistWeightService {
     void deleteArtistWeight(String id);*/
 
     public List<ArtistWeight> getTopArtists();
+    public List<ArtistWeight> getTopLikedArtists(List<String> likedArtists);
 }

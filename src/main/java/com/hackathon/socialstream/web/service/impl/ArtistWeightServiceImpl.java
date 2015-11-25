@@ -76,4 +76,11 @@ public class ArtistWeightServiceImpl implements ArtistWeightService {
         return artistWeight;
     }
 
+    @Override
+    public List<ArtistWeight> getTopLikedArtists(List<String> likedArtists){
+        List<ArtistWeight> artistWeight = artistWeightDao.getTopLikedArtists(likedArtists);
+
+        return artistWeight;
+    }
+
 }
