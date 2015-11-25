@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Facebook Login JavaScript Example</title>
-<meta charset="UTF-8">
+    <title>Facebook Login JavaScript Example</title>
+    <meta charset="UTF-8">
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" >
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" >
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
 </head>
 <body>
 <script>
+
+
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
 
@@ -90,10 +92,27 @@
            /* handle the result */
             //dataMusic = response.music.data;
            //dataSports = response.favourite_teams;
-            var attractionsList = mergeData(dataSports, dataMusic);
+            //var attractionsList = mergeData(dataSports, dataMusic);
             if(attractionsList.length > 0){
                  //TODO:::Send the list for processing...
-                 returnDataToEndpoint(attractionsList);
+                 //self.returnDataToEndpoint(attractionsList);
+                 $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: '/socialstream/weight/top/likedartists',
+            dataType: 'json',
+            async: true,
+            data: {artists:attractionsList},
+            success: function (e) {
+                console.log("SUCCESS");
+
+            },
+            error: function (e) {
+                console.log("ERROR");
+                console.log(e);
+            }
+        });
+        drawTable(attractionsList);
             }
          }
        }
@@ -122,23 +141,7 @@
     });
   }
 
-  function returnDataToEndPoint(list){
-    $.ajax({
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            url: '/socialstream/weight/top/likedartists',
-            dataType: 'json',
-            async: true,
-            data: list,
-            success: function () {
-                console.log("SUCCESS");
 
-            },
-            error: function () {
-                console.log("ERROR");
-            }
-        });
-  }
   function mergeData(dataSports, dataMusic){
     debugger;
     attractionsList = [];
@@ -217,8 +220,25 @@ function drawTable(data) {
 function drawRow(rowData) {
     var row = $("<tr />");
     $("#personDataTable").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
-    row.append($("<td>" + rowData.id + "</td>"));
-    row.append($("<td>" + rowData.name + "</td>"));
+    row.append($("<td class='each-cell'>" + rowData.name + "</td>"));
+    rowData.name  = 'Teyana Taylor'
+    /*$.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: 'http://app.fs.iwash1.websys.tmcs:8080/fss-service/rest/events.json?keyword=' + rowData.name,
+            dataType: 'jsonp',
+            async: true,
+            success: function (data) {
+            console.log(data);
+                console.log("SUCCESS");
+
+            },
+            error: function (data) {
+                console.log("ERROR");
+                console.log(data);
+            }
+        });*/
+    row.append($("<td class='each-cell'>" + rowData + "</td>"));
 }
 </script>
 
@@ -235,17 +255,24 @@ function drawRow(rowData) {
 </div>
 
 <div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
+        class="fb-like"
+        data-share="true"
+        data-width="450"
+        data-show-faces="true">
 </div>
-
-<table id="personDataTable">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-    </tr>    
-</table>
+<div class="container">
+    <table id="personDataTable" class="table table-striped">
+        <tr>
+            <th>Popular Artists</th>
+            <th>Recent events of the artist</th>
+        </tr>
+        <tr id = "200" class="each-row">
+            <td class = "error-code">200</td>
+            <td class="error-message">
+                OK
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

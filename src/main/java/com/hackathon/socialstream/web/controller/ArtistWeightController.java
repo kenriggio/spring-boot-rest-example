@@ -2,6 +2,7 @@ package com.hackathon.socialstream.web.controller;
 
 
 
+import com.hackathon.socialstream.HTTPConnection;
 import com.hackathon.socialstream.model.FbArtists;
 import io.swagger.annotations.Api;
 
@@ -98,6 +99,11 @@ public class ArtistWeightController {
         //List<ArtistWeight> artistWeight =  artistWeightService.getTopLikedArtists(liked_artist.getArtists());
 
         //return artistWeight;
+        try {
+            HTTPConnection.sendGet();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
