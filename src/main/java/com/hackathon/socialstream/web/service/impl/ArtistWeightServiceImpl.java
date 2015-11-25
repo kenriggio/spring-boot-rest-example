@@ -14,6 +14,8 @@ import com.hackathon.socialstream.web.service.ArtistWeightService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 @Service
 public class ArtistWeightServiceImpl implements ArtistWeightService {
 
@@ -26,7 +28,7 @@ public class ArtistWeightServiceImpl implements ArtistWeightService {
         this.artistWeightDao = artistWeightDao;
     }
 
-    @Override
+   /* @Override
     @Profile("ArtistWeightServiceImpl#getArtistWeight")
     @Throwit
     public ArtistWeight getArtistWeight(String id) {
@@ -65,5 +67,13 @@ public class ArtistWeightServiceImpl implements ArtistWeightService {
 	public ListenableFuture<ArtistWeight> getArtistWeightAsync(String id) throws InterruptedException {
 		ArtistWeight artistWeight = artistWeightDao.findArtistWeightById(id);
 		return new AsyncResult<ArtistWeight>(artistWeight);
-	}
+	}*/
+
+    @Override
+    public List<ArtistWeight> getTopArtists(){
+        List<ArtistWeight> artistWeight = artistWeightDao.getTopTenArtists();
+
+        return artistWeight;
+    }
+
 }

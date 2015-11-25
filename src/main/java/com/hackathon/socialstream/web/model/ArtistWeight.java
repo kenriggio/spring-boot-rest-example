@@ -9,14 +9,14 @@ import io.swagger.annotations.ApiModelProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ArtistWeight {
 
-    @JsonProperty("id")
+    @JsonProperty("artist_weight_id")
     private String artistWeightId; // using userLocationId instead of Id, since ResourceSupport using id for link.
-    @JsonProperty("attractionId")
+    @JsonProperty("attraction_id")
     private String attractionId;
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("artist_name")
+    private String artistName;
     @JsonProperty("weight")
-    private String weight;
+    private int weight;
 
     @ApiModelProperty(required = false, value = "Unique Identifier of this Object")
     public String getArtistWeightId() {
@@ -38,19 +38,19 @@ public class ArtistWeight {
 
     @ApiModelProperty(required = false, value = "Name")
     public String getName() {
-        return name;
+        return artistName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.artistName = name;
     }
 
     @ApiModelProperty(required = false, value = "Weight")
-    public String getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 }

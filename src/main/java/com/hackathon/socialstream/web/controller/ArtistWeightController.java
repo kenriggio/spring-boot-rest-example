@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @RestController
 @Api(value = "socialstream", produces = "application/json", consumes = "application/json")
@@ -58,7 +60,20 @@ public class ArtistWeightController {
         return responseHeaders;
     }
 
-    @ApiOperation(value = "Gets an existing ArtistWeight by Id", notes = "Returns a ArtistWeight for given id", response = ArtistWeight.class)
+    @ApiOperation(value = "Get Top Artists", response = ArtistWeight.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "No Artists found", response = ApiFault.class),  // TODO: Not implemented
+            @ApiResponse(code = 200, message = "Top artists found and returned", response = ArtistWeight.class) })
+    @RequestMapping(value = "/topartists", method = RequestMethod.GET, produces="application/json")
+    @ResponseBody
+    public Object getArtistsForConsumer(){
+
+        List<ArtistWeight> artistWeight =  artistWeightService.getTopArtists();
+
+        return artistWeight;
+    }
+
+   /* @ApiOperation(value = "Gets an existing ArtistWeight by Id", notes = "Returns a ArtistWeight for given id", response = ArtistWeight.class)
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "ArtistWeight was not found", response = ApiFault.class),  // TODO: Not implemented
             @ApiResponse(code = 200, message = "ArtistWeight was found and returned", response = ArtistWeight.class) })
@@ -69,7 +84,6 @@ public class ArtistWeightController {
         ArtistWeight artistWeight = artistWeightService.getArtistWeight(id);
         return new ResponseEntity<ArtistWeight>(artistWeight, getResponseHeadersForArtistWeight(artistWeight), HttpStatus.OK);
     }
-    
 
 
     @ApiOperation(value = "Create new ArtistWeight", notes = "Creates new ArtistWeight")
@@ -110,6 +124,6 @@ public class ArtistWeightController {
         artistWeightService.deleteArtistWeight(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
-
+*/
 
 }
