@@ -45,54 +45,12 @@
        "me?fields=favorite_teams,music&limit=100",
        function(response){
        console.log(response)
-        dataMusic =[
-    {
-      "name": "Atif Aslam",
-      "id": "182973122142",
-      "created_time": "2015-11-25T02:34:21+0000"
-    },
-    {
-      "name": "Black Eyed Peas",
-      "id": "58332338082",
-      "created_time": "2015-11-25T02:34:20+0000"
-    },
-    {
-      "name": "Maroon 5",
-      "id": "5330548481",
-      "created_time": "2015-11-25T02:34:20+0000"
-    },
-    {
-      "name": "Fifth Harmony",
-      "id": "173362709468415",
-      "created_time": "2015-11-25T02:34:19+0000"
-    }];
-       dataSports = [
-    {
-      "name": "Atif Aslam1",
-      "id": "182973122142",
-      "created_time": "2015-11-25T02:34:21+0000"
-    },
-    {
-      "name": "Black Eyed Peas1",
-      "id": "58332338082",
-      "created_time": "2015-11-25T02:34:20+0000"
-    },
-    {
-      "name": "Maroon 51",
-      "id": "5330548481",
-      "created_time": "2015-11-25T02:34:20+0000"
-    },
-    {
-      "name": "Fifth Harmony1",
-      "id": "173362709468415",
-      "created_time": "2015-11-25T02:34:19+0000"
-    }];
-    var attractionsList = mergeData(dataSports, dataMusic);
+
          if (response && !response.error) {
            /* handle the result */
-            //dataMusic = response.music.data;
-           //dataSports = response.favourite_teams;
-            //var attractionsList = mergeData(dataSports, dataMusic);
+            dataMusic = response.music.data;
+            dataSports = response.favourite_teams;
+            var attractionsList = mergeData(dataSports, dataMusic);
             if(attractionsList.length > 0){
                  //TODO:::Send the list for processing...
                  //self.returnDataToEndpoint(attractionsList);
@@ -104,7 +62,8 @@
             async: true,
             data: JSON.stringify({'artists':attractionsList}),
             success: function (e) {
-                console.log("SUCCESS");
+                console.log(e);
+                drawTable(e);
 
             },
             error: function (e) {
@@ -112,7 +71,7 @@
                 console.log(e);
             }
         });
-        drawTable(attractionsList);
+
             }
          }
        }
@@ -220,25 +179,8 @@ function drawTable(data) {
 function drawRow(rowData) {
     var row = $("<tr />");
     $("#personDataTable").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
-    row.append($("<td class='each-cell'>" + rowData.name + "</td>"));
-    rowData.name  = 'Teyana Taylor'
-    /*$.ajax({
-            type: "GET",
-            contentType: "application/json; charset=utf-8",
-            url: 'http://app.fs.iwash1.websys.tmcs:8080/fss-service/rest/events.json?keyword=' + rowData.name,
-            dataType: 'jsonp',
-            async: true,
-            success: function (data) {
-            console.log(data);
-                console.log("SUCCESS");
+    row.append($("<td class='each-cell'>" + rowData.artist_name + "</td>"));
 
-            },
-            error: function (data) {
-                console.log("ERROR");
-                console.log(data);
-            }
-        });*/
-    row.append($("<td class='each-cell'>" + rowData + "</td>"));
 }
 </script>
 
@@ -263,14 +205,7 @@ function drawRow(rowData) {
 <div class="container">
     <table id="personDataTable" class="table table-striped">
         <tr>
-            <th>Popular Artists</th>
-            <th>Recent events of the artist</th>
-        </tr>
-        <tr id = "200" class="each-row">
-            <td class = "error-code">200</td>
-            <td class="error-message">
-                OK
-            </td>
+            <th>Top Liked Artists on Facebook</th>
         </tr>
     </table>
 </div>
