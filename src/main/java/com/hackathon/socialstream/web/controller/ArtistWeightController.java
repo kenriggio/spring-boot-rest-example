@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.QueryParam;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -80,7 +81,16 @@ public class ArtistWeightController {
             @ApiResponse(code = 200, message = "Top artists found and returned", response = ArtistWeight.class) })
     @RequestMapping(value = "/top/likedartists", method = RequestMethod.POST, produces="application/json")
     @ResponseBody
-    public Object getLikedArtists(@QueryParam("liked_artists")List<String> liked_artists){
+    public Object getLikedArtists(@QueryParam("liked_artists")ArrayList<String> liked_artist){
+
+        System.out.println("Linked Artists: " + liked_artist.toString());
+        List<String> liked_artists = new ArrayList<String>();
+
+        liked_artists.add("Celtics");
+        liked_artists.add("Cavaliers");
+        liked_artists.add("Merphis");
+        liked_artists.add("Lakers");
+        liked_artists.add("Knicks");
 
         List<ArtistWeight> artistWeight =  artistWeightService.getTopLikedArtists(liked_artists);
 
