@@ -111,6 +111,12 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.1.7.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+		</dependency>
+
 	</dependencies>
 
 
@@ -142,7 +148,7 @@
 		<source.plugin.version>2.1.2</source.plugin.version>
 		<release.plugin.version>2.5</release.plugin.version>
 
-	
+
 
 		<tomcat.http.port>8080</tomcat.http.port>
 	</properties>

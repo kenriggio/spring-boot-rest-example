@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.google.common.base.Predicate;
 import com.hackathon.socialstream.web.dao.ArtistWeightDao;
@@ -22,6 +23,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import static springfox.documentation.builders.PathSelectors.*;
 
+import javax.sql.DataSource;
+
 @EnableAutoConfiguration(exclude = {HypermediaAutoConfiguration.class})
 @Configuration
 @EnableAspectJAutoProxy
@@ -33,7 +36,16 @@ public class Application {
     @Autowired
     private Environment env;
   
- 
+    @Bean
+    public DataSource getDataSource() {
+    	DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    	dataSource.setDriverClassName(env.getProperty("db.driver"));
+    	dataSource.setUrl(env.getProperty("db.url"));
+    	dataSource.setUsername(env.getProperty("db.username"));
+    	dataSource.setPassword(env.getProperty("db.password"));
+    	return dataSource;
+    }
+    
     @Bean(name = "artistWeightDao")
     public ArtistWeightDao userLocationDao() {
         return new ArtistWeightDaoImpl();

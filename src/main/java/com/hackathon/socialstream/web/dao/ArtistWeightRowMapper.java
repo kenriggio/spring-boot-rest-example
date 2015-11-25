@@ -14,9 +14,9 @@ public class ArtistWeightRowMapper  implements RowMapper {
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
         ArtistWeight artistWeight = new ArtistWeight();
         artistWeight.setArtistWeightId(rs.getString("artist_weight_id"));
-        artistWeight.setName(rs.getString("name"));
-        artistWeight.setAttractionId(rs.getString("AGE"));
-        artistWeight.setWeight(rs.getInt("attraction_id"));
+        artistWeight.setName(rs.getString("artist_name"));
+        artistWeight.setAttractionId(rs.getString("attraction_id"));
+        artistWeight.setWeight(rs.getInt("weight"));
         return artistWeight;
     }
 }
