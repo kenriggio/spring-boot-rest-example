@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.inject.Inject;
+import javax.sql.DataSource;
+
 import java.util.List;
 
 /**
@@ -15,8 +17,12 @@ import java.util.List;
  */
 public class ArtistWeightDaoImpl implements ArtistWeightDao {
 
-    @Inject
+	@Inject
+	private DataSource dataSource;
+
+    
     private JdbcTemplate jdbcTemplate;
+    
     public ArtistWeightDaoImpl() {
     }
 
@@ -57,7 +63,8 @@ public class ArtistWeightDaoImpl implements ArtistWeightDao {
     @Override
     public List<ArtistWeight> getTopTenArtists(){
 
-    List<ArtistWeight> artistWeight = jdbcTemplate.query(ArtistWeightDaoImpl.TOP10ARTIST, new ArtistWeightRowMapper());
+    	jdbcTemplate = new JdbcTemplate(dataSource);
+    	List<ArtistWeight> artistWeight = jdbcTemplate.query(ArtistWeightDaoImpl.TOP10ARTIST, new ArtistWeightRowMapper());
 
         return artistWeight;
     }
