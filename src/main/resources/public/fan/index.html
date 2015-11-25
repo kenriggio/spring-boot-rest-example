@@ -20,25 +20,86 @@
 <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
+
+    var dataMusic = null;
+    var dataSports = null;
+
     console.log('statusChangeCallback');
     console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
+
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       /* make the API call */
+      //music data
+
+
+
+      //favourite teams data
       FB.api(
-       "/me/music?limit=100",
-       function (response) {
+       "me?fields=favorite_teams,music&limit=100",
+       function(response){
+       console.log(response)
+        dataMusic =[
+    {
+      "name": "Atif Aslam",
+      "id": "182973122142",
+      "created_time": "2015-11-25T02:34:21+0000"
+    },
+    {
+      "name": "Black Eyed Peas",
+      "id": "58332338082",
+      "created_time": "2015-11-25T02:34:20+0000"
+    },
+    {
+      "name": "Maroon 5",
+      "id": "5330548481",
+      "created_time": "2015-11-25T02:34:20+0000"
+    },
+    {
+      "name": "Fifth Harmony",
+      "id": "173362709468415",
+      "created_time": "2015-11-25T02:34:19+0000"
+    }];
+       dataSports = [
+    {
+      "name": "Atif Aslam1",
+      "id": "182973122142",
+      "created_time": "2015-11-25T02:34:21+0000"
+    },
+    {
+      "name": "Black Eyed Peas1",
+      "id": "58332338082",
+      "created_time": "2015-11-25T02:34:20+0000"
+    },
+    {
+      "name": "Maroon 51",
+      "id": "5330548481",
+      "created_time": "2015-11-25T02:34:20+0000"
+    },
+    {
+      "name": "Fifth Harmony1",
+      "id": "173362709468415",
+      "created_time": "2015-11-25T02:34:19+0000"
+    }];
+    var attractionsList = mergeData(dataSports, dataMusic);
          if (response && !response.error) {
            /* handle the result */
-           drawTable(response.data);
+            //dataMusic = response.music.data;
+           //dataSports = response.favourite_teams;
+            var attractionsList = mergeData(dataSports, dataMusic);
+            if(attractionsList.length > 0){
+                 //TODO:::Send the list for processing...
+                 returnDataToEndpoint(attractionsList);
+            }
          }
        }
       );
-    
+
+
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -59,6 +120,45 @@
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
+  }
+
+  function returnDataToEndPoint(list){
+    $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: '/xyz',
+            dataType: 'json',
+            async: true,
+            data: list,
+            success: function () {
+                console.log("SUCCESS");
+
+            },
+            error: function () {
+                console.log("ERROR");
+            }
+        });
+  }
+  function mergeData(dataSports, dataMusic){
+    debugger;
+    attractionsList = [];
+    if(dataSports && dataMusic){
+        attractionsData = dataSports.concat(dataMusic);
+        for(var i=0;i<attractionsData.length; i++){
+            attractionsList.push(attractionsData[i]['name']);
+        }
+
+    }else if(dataSports){
+        for(var i=0;i<dataSports.length;i++){
+            attractionsList.push(dataSports[i]['name']);
+        }
+    }
+    else if(dataMusic){
+        for(var i=0;i<dataMusic.length;i++){
+            attractionsList.push(dataMusic[i]['name']);
+        }
+    }
+    return attractionsList;
   }
 
   window.fbAsyncInit = function() {
