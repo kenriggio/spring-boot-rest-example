@@ -92,35 +92,20 @@ public class ArtistWeightController {
     @RequestMapping(value = "/top/likedartists", method = RequestMethod.POST, produces="application/json")
     @ResponseBody
     public Object getLikedArtists(Model model, @RequestBody(required = true)String artists){
-        FbArtists fbArtists;
+        FbArtists fbArtists = null;
         try {
              fbArtists = new ObjectMapper().readValue(artists, FbArtists.class);
+        
+    	
+             List<ArtistWeight> artistWeight =  artistWeightService.getTopLikedArtists(fbArtists.getArtists());
+
+        
+        	return artistWeight;
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        try {
-//            JSONObject json = (JSONObject)new JSONParser() .parse(artists);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-        System.out.println("Linked Artists: " + artists);
-        /*List<String> liked_artists = new ArrayList<String>();
-
-        liked_artists.add("Celtics");
-        liked_artists.add("Cavaliers");
-        liked_artists.add("Merphis");
-        liked_artists.add("Lakers");
-        liked_artists.add("Knicks");*/
-
-        //List<ArtistWeight> artistWeight =  artistWeightService.getTopLikedArtists(liked_artist.getArtists());
-
-        //return artistWeight;
-        try {
-            HTTPConnection.sendGet();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return null;
+       
     }
 
 

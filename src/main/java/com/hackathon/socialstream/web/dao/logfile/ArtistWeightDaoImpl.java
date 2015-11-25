@@ -91,16 +91,16 @@ public class ArtistWeightDaoImpl implements ArtistWeightDao {
                                        .put("artist_name", artists)
                                        .build();
         try {
-            //List<ArtistWeight> artistWeight = (List<ArtistWeight>) jdbcTemplate.queryForObject(ArtistWeightDaoImpl.TOP3LIKEDARTISTS, new ArtistWeightRowMapper(), params);
+        	jdbcTemplate = new JdbcTemplate(dataSource);
             List<ArtistWeight> artistWeight = jdbcTemplate.query(query, new ArtistWeightRowMapper());
 
-            //FSSClient.getFSSData();
             return artistWeight;
         }
         catch(Exception e){
             System.out.println("Error in query for Object!!");
             System.out.println(e.getMessage());
-            return null;
+            e.printStackTrace();
+            return new ArrayList<ArtistWeight>();
         }
 
     }
